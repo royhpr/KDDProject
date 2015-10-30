@@ -18,7 +18,7 @@ public class FeatureFilterController {
 	//This will be called to filter irrelevant features
 	public void filterFeatures(){
 		try{
-			
+			MessageController.logToConsole("Hey, I'm from filter feature button");
 		}
 		catch(Exception ex){
 			throw ex;

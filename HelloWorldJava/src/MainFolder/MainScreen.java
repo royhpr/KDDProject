@@ -1,6 +1,5 @@
 package MainFolder;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -21,11 +20,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.SoftBevelBorder;
 
-public class MainScreen extends JFrame {
+public class MainScreen extends JFrame implements MessageInterface{
 	//Constants
 	private int padding = 10;
 
 	//GUI Components
+	private static MainScreen instance;
+	
 	private JPanel contentPane;
 	private JLabel lblTitle;
 	private JButton btnBrowse;
@@ -55,7 +56,7 @@ public class MainScreen extends JFrame {
 			public void run() {
 				try {
 					//Initialize all GUI components
-					MainScreen frame = new MainScreen();
+					MainScreen frame = MainScreen.initInstance();
 					frame.setVisible(true);
 
 					//Initialize main controller
@@ -70,7 +71,15 @@ public class MainScreen extends JFrame {
 	/**
 	 * UI Logic
 	 */
-	public MainScreen() {
+	public static MainScreen initInstance(){
+		if(instance == null){
+			instance = new MainScreen();
+		}
+		
+		return instance;
+	}
+	
+	private MainScreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 370);
 		setResizable(false);
@@ -296,7 +305,7 @@ public class MainScreen extends JFrame {
 	/**
 	 * Common sharing functions
 	 */
-	private void writeToConsole(String data){
+	public void writeToConsole(String data){
 		txtAreaConsole.append(data + "\n");
 	}
 

@@ -18,7 +18,7 @@ public class TestController {
 	//Test process will happen here
 	public void TestDataset(){
 		try{
-			
+			MessageController.logToConsole("Hey, I'm from test button");
 		}
 		catch(Exception ex){
 			throw ex;

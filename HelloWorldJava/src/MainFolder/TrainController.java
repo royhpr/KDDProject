@@ -1,6 +1,6 @@
 package MainFolder;
 
-public class TrainController {
+public class TrainController{
 	private static TrainController instance;
 	
 	private TrainController(){
@@ -18,6 +18,9 @@ public class TrainController {
 	//Train process happen here...
 	public void TrainDataset(){
 		try{
+			//Testing delegate method
+			MessageController.logToConsole("Hey, I'm from train button");
+			
 			//Pass in the real training dataset
 			findSuitableK(new String[]{"Hello", "World"});
 			
