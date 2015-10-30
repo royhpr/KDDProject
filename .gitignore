@@ -18,3 +18,7 @@
 HelloWorldJava/bin/MainFolder/MainScreen$1.class
 
 HelloWorldJava/bin/MainFolder/MainScreen$2.class
+
+*.snap
+
+*.dat
