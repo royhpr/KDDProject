@@ -28,3 +28,9 @@ HelloWorldJava/bin/MainFolder/MainScreen$2.class
 .metadata/.plugins/org.eclipse.jdt.ui/jdt-images/1.png
 
 .metadata/.plugins/org.eclipse.jdt.ui/jdt-images/2.png
+
+.metadata/.log
+
+*.dat
+
+*.prefs

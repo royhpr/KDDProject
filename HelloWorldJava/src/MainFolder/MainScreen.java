@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -120,7 +121,17 @@ public class MainScreen extends JFrame implements MessageInterface{
 		btnBrowse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Click to browse the file system
+				JFileChooser chooser = new JFileChooser();
+	            chooser.setCurrentDirectory(new java.io.File("."));
+	            chooser.setDialogTitle("Choose source file");
+	            chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+	            chooser.setAcceptAllFileFilterUsed(true);
 
+	            if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+	               txtDirectoryPath.setText(chooser.getSelectedFile().toString());
+	               enableParameters(true);
+	               enableRunTime(true);
+	            }
 			}
 		});
 		contentPane.add(btnBrowse);
@@ -155,6 +166,7 @@ public class MainScreen extends JFrame implements MessageInterface{
 		addCrossValidationFoldDropDownList();
 
 		contentPane.add(pnlParameters);
+		enableParameters(false);
 	}
 
 	private void addPartitionLable(){
@@ -199,11 +211,13 @@ public class MainScreen extends JFrame implements MessageInterface{
 		pnlRunTime.setLocation(padding, pnlParameters.getLocation().y + pnlParameters.getSize().height + 10);
 		pnlRunTime.setSize(contentPane.getSize().width - 2 * padding, 200);
 		pnlRunTime.setBorder(BorderFactory.createTitledBorder("Operation"));
-		contentPane.add(pnlRunTime);
 
 		//Add components
 		addRunTimeButtons();
 		addLogConsole();
+		
+		contentPane.add(pnlRunTime);
+		enableRunTime(false);
 	}
 
 	private void addRunTimeButtons(){
@@ -221,6 +235,8 @@ public class MainScreen extends JFrame implements MessageInterface{
 		btnPreprocess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
+					btnTrain.setEnabled(false);
+					btnTest.setEnabled(false);
 					masterCommandCenter.filterFeatures();
 				}
 				catch(Exception ex){
@@ -243,6 +259,8 @@ public class MainScreen extends JFrame implements MessageInterface{
 		btnTrain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
+					btnPreprocess.setEnabled(false);
+					btnTest.setEnabled(false);
 					masterCommandCenter.TrainDataSet();
 				}
 				catch(Exception ex){
@@ -265,6 +283,8 @@ public class MainScreen extends JFrame implements MessageInterface{
 		btnTest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
+					btnPreprocess.setEnabled(false);
+					btnTrain.setEnabled(false);
 					masterCommandCenter.TestDataSet();
 				}
 				catch(Exception ex){
@@ -311,5 +331,22 @@ public class MainScreen extends JFrame implements MessageInterface{
 
 	private void clearConsole(){
 		txtAreaConsole.setText("");
+	}
+	
+	private void enableParameters(Boolean flag){
+		pnlParameters.setEnabled(flag);
+		lblPartition.setEnabled(flag);
+		cmbPartitionPercentage.setEnabled(flag);
+		lblCrossValidation.setEnabled(flag);
+		cmbCrossValidation.setEnabled(flag);
+	}
+	
+	private void enableRunTime(Boolean flag){
+		pnlRunTime.setEnabled(flag);
+		btnPreprocess.setEnabled(flag);
+		btnTrain.setEnabled(flag);
+		btnTest.setEnabled(flag);
+		btnClear.setEnabled(flag);
+		txtAreaConsole.setEnabled(flag);
 	}
 }
