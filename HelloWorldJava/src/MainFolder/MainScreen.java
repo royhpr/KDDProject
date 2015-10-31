@@ -1,5 +1,6 @@
 package MainFolder;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -22,6 +23,11 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.SoftBevelBorder;
 
 public class MainScreen extends JFrame implements MessageInterface{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//Constants
 	private int padding = 10;
 
@@ -142,6 +148,8 @@ public class MainScreen extends JFrame implements MessageInterface{
 
 		txtDirectoryPath = new JTextField();
 		txtDirectoryPath.setEditable(false);
+		txtDirectoryPath.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		txtDirectoryPath.setForeground(Color.lightGray);
 		txtDirectoryPath.setText("Source file directory...");
 		txtDirectoryPath.setToolTipText("Source file directory...");
 		txtDirectoryPath.setLocation(x, btnBrowse.getLocation().y);
