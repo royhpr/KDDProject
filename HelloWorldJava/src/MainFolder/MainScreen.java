@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.SoftBevelBorder;
+import javax.swing.text.DefaultCaret;
 
 public class MainScreen extends JFrame implements MessageInterface{
 	/**
@@ -335,6 +336,8 @@ public class MainScreen extends JFrame implements MessageInterface{
 	 */
 	public void writeToConsole(String data){
 		txtAreaConsole.append(data + "\n");
+//		DefaultCaret caret = (DefaultCaret) txtAreaConsole.getCaret();
+//		caret.setUpdatePolicy(UPDATE);
 	}
 
 	private void clearConsole(){
