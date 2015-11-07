@@ -21,9 +21,9 @@ public class MainController {
 		return instance;
 	}
 	
-	public void filterFeatures(){
+	public void filterFeatures(int ratio){
 		try{
-			filterCommandCenter.filterFeatures();
+			filterCommandCenter.filterFeatures(ratio);
 		}
 		catch(Exception ex){
 			throw ex;

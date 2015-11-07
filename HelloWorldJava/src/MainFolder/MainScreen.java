@@ -246,7 +246,12 @@ public class MainScreen extends JFrame implements MessageInterface{
 				try{
 					btnTrain.setEnabled(false);
 					btnTest.setEnabled(false);
-					masterCommandCenter.filterFeatures();
+					
+					//Get percentage
+					String splitPercentage = cmbPartitionPercentage.getSelectedItem().toString();
+					String ratioString = splitPercentage.substring(0, 1);
+					int ratio = Integer.parseInt(ratioString);
+					masterCommandCenter.filterFeatures(10 - ratio);
 				}
 				catch(Exception ex){
 					writeToConsole(ex.getMessage());
